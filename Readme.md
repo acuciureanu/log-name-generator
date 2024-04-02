@@ -56,18 +56,22 @@ To make log file names, run:
 
 ```bash
 Usage of log-name-generator:
+This program generates log filenames for a specified number of past days based on provided seed names or defaults.
+
   -days int
         Number of days
   -ext string
         Extension for generated log files (default "log")
+  -log-names string
+        Comma-separated base names of log files
   -seed-file string
         File containing the base name of log files
-```
 
-For example, for the last 7 days, run:
-
-```bash
-log-name-generator -days 7
+Examples:
+  log-name-generator -days 7 -ext txt -log-names 'server,error'
+  This command generates server and error log filenames for the past 7 days with a .txt extension.
+  log-name-generator -days 5 -seed-file seeds.txt
+  This command uses seed names from 'seeds.txt' to generate log filenames for the past 5 days.
 ```
 
 ## License
