@@ -1,52 +1,83 @@
 package main
 
 import (
+	"bufio"
+	"flag"
 	"fmt"
 	"os"
-	"strconv"
+	"sync"
 	"time"
 )
 
-func printUsage() {
-	fmt.Println("Usage: log-generator <number_of_days>")
-	fmt.Println("Generate log filenames for the specified number of days in the past, up to the current day.")
+func main() {
+	// Define and parse flags
+	seedFile := flag.String("seed-file", "", "File containing the base name of log files")
+	daysFlag := flag.Int("days", 0, "Number of days")
+	ext := flag.String("ext", "log", "Extension for generated log files")
+	flag.Parse()
+
+	// Check if number of days is provided
+	if *daysFlag <= 0 {
+		fmt.Println("Error: Number of days should be a positive integer")
+		flag.Usage()
+		os.Exit(1)
+	}
+
+	// Read seed from file if provided
+	seeds := readSeedFile(*seedFile)
+
+	// Generate log filenames
+	dateFormats := []string{"2006-01-02", "20060102", "2006_01_02", "2006-Jan-02", "200601021504"}
+	now := time.Now()
+
+	// Create a WaitGroup to synchronize goroutines
+	var wg sync.WaitGroup
+
+	for day := 0; day < *daysFlag; day++ {
+		wg.Add(1) // Increment WaitGroup counter
+
+		go func(day int) {
+			defer wg.Done() // Decrement WaitGroup counter when goroutine finishes
+
+			timestamp := now.AddDate(0, 0, -day)
+			for _, seed := range seeds {
+				for _, format := range dateFormats {
+					fmt.Printf("%s-%s.%s\n", seed, timestamp.Format(format), *ext)
+				}
+			}
+		}(day)
+	}
+
+	// Wait for all goroutines to finish
+	wg.Wait()
 }
 
-func main() {
-	if len(os.Args) != 2 {
-		printUsage()
+func readSeedFile(seedFile string) []string {
+	if seedFile == "" {
+		return getDefaultLogTypes()
+	}
+
+	file, err := os.Open(seedFile)
+	if err != nil {
+		fmt.Println("Error opening seed file:", err)
+		os.Exit(1)
+	}
+	defer file.Close()
+
+	var seeds []string
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		seeds = append(seeds, scanner.Text())
+	}
+
+	if err := scanner.Err(); err != nil {
+		fmt.Println("Error reading seed file:", err)
 		os.Exit(1)
 	}
 
-	days, err := strconv.Atoi(os.Args[1])
-	if err != nil || days < 1 {
-		fmt.Println("Error: The number of days should be a positive integer.")
-		printUsage()
-		os.Exit(1)
-	}
+	return seeds
+}
 
-	logTypes := []string{
-		"access", "access_log", "authorizenet", "development",
-		"error", "error_log", "exception", "librepag",
-		"log", "old", "payment", "payment_authorizenet",
-		"payment_paypal_express", "production", "server", "test", "www-error",
-	}
-
-	dateFormats := []string{
-		"2006-01-02",   // ISO 8601: YYYY-MM-DD
-		"20060102",     // Compact: YYYYMMDD
-		"2006_01_02",   // Underscore: YYYY_MM_DD
-		"2006-Jan-02",  // Hyphenated Short Month: YYYY-Mon-DD
-		"200601021504", // Compact Timestamp: YYYYMMDDHHMM
-	}
-
-	for day := 0; day < days; day++ {
-		timestamp := time.Now().AddDate(0, 0, -day)
-		for _, logType := range logTypes {
-			for _, format := range dateFormats {
-				filename := fmt.Sprintf("%s-%s.log", logType, timestamp.Format(format))
-				fmt.Println(filename)
-			}
-		}
-	}
+func getDefaultLogTypes() []string {
+	return []string{"access", "access_log", "authorizenet", "development", "error", "error_log", "exception", "librepag", "log", "old", "payment", "payment_authorizenet", "payment_paypal_express", "production", "server", "test", "www-error"}
 }
