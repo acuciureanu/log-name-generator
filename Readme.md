@@ -1,6 +1,6 @@
 # Log Name Generator 🌈
 
-Welcome! This tool helps you name your log files easily. It's perfect for anyone who works with many logs and wants a simple way to name them.
+Welcome! This tool makes naming log files a breeze, perfect for bug bounty hunters looking to generate fuzz lists effortlessly.
 
 ## What It Does
 
@@ -63,5 +63,3 @@ log-name-generator 7
 ## License
 
 This tool is free to use under the MIT License.
-
-Enjoy making your log files neat and organized! 🎉
