@@ -58,6 +58,8 @@ To make log file names, run:
 Usage of log-name-generator:
 This program generates log filenames for a specified number of past days based on provided seed names or defaults.
 
+  -date-format string
+        Specify a single date format for log filenames (e.g., '20060102' for YYYYMMDD). See usage for more examples.
   -days int
         Number of days
   -ext string
@@ -70,8 +72,19 @@ This program generates log filenames for a specified number of past days based o
 Examples:
   log-name-generator -days 7 -ext txt -log-names 'server,error'
   This command generates server and error log filenames for the past 7 days with a .txt extension.
+
+Date Format Examples:
+  -date-format "2006-01-02" : Use ISO 8601 format (e.g., server-2024-04-02.log)
+  -date-format "20060102" : Use a compact format without separators (e.g., server-20240402.log)
+  -date-format "2006_01_02" : Use underscores as separators (e.g., server-2024_04_02.log)
+  -date-format "2006-Jan-02" : Include a three-letter month abbreviation (e.g., server-2024-Apr-02.log)
+  -date-format "200601021504" : Extend the compact date format to include hours and minutes (e.g., server-202404021530.log)
+
+More usage examples:
   log-name-generator -days 5 -seed-file seeds.txt
   This command uses seed names from 'seeds.txt' to generate log filenames for the past 5 days.
+  log-name-generator -days 3 -date-format "2006-Jan-02"
+  This command generates log filenames for the past 3 days using the format with a three-letter month abbreviation.
 ```
 
 ## License
