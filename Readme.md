@@ -4,7 +4,7 @@ Welcome! This tool makes naming log files a breeze, perfect for bug bounty hunte
 
 ## Inspiration :v:
 
-This tool was inspired from Nahamsec's video [Don't Make This Recon Mistake // How To Bug Bounty](https://www.youtube.com/watch?v=YbIEXJhZxUk)
+This tool was inspired from NahamSec's Youtube video [Don't Make This Recon Mistake // How To Bug Bounty](https://www.youtube.com/watch?v=YbIEXJhZxUk)
 
 ## What It Does
 
