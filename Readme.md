@@ -2,6 +2,10 @@
 
 Welcome! This tool makes naming log files a breeze, perfect for bug bounty hunters looking to generate fuzz lists effortlessly.
 
+## Inspiration :v:
+
+This tool was inspired from Nahamsec's video [Don't Make This Recon Mistake // How To Bug Bounty](https://www.youtube.com/watch?v=YbIEXJhZxUk)
+
 ## What It Does
 
 This tool makes log file names for any number of past days, up to today. It supports many log types and date formats.
