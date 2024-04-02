@@ -58,6 +58,7 @@ Usage of log-name-generator:
         Extension for generated log files (default "log")
   -seed-file string
         File containing the base name of log files```
+```
 
 For example, for the last 7 days, run:
 
