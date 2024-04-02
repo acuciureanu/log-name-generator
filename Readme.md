@@ -30,7 +30,7 @@ We support many log types:
 
 ### Date Formats
 
-You can choose from different date formats:
+It generates by default the following date formats:
 
 - ISO 8601: YYYY-MM-DD
 - Compact: YYYYMMDD
