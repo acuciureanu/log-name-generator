@@ -51,13 +51,18 @@ go install github.com/acuciureanu/log-name-generator@latest
 To make log file names, run:
 
 ```bash
-log-name-generator <number_of_days>
-```
+Usage of log-name-generator:
+  -days int
+        Number of days
+  -ext string
+        Extension for generated log files (default "log")
+  -seed-file string
+        File containing the base name of log files```
 
 For example, for the last 7 days, run:
 
 ```bash
-log-name-generator 7
+log-name-generator -days 7
 ```
 
 ## License
