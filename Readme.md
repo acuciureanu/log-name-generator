@@ -110,7 +110,7 @@ More usage examples:
   This command generates log filenames for the past 3 days using the format with a three-letter month abbreviation.
 ```
 
-### Still not clear how to use the `-seed-file` argument
+#### Still not clear how to use the `-seed-file` argument ?
 
 Let's say that `seeds.txt` is our seed file and it contains a few keywords which we want to include in the file names that we want to generate.
 
