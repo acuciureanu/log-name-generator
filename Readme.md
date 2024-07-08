@@ -10,6 +10,28 @@ This tool was inspired from NahamSec's Youtube video [Don't Make This Recon Mist
 
 This tool makes log file names for any number of past days, up to today. It supports many log types and date formats.
 
+### Log Types
+
+We support many log types:
+
+- 🚪 access
+- 📜 access_log
+- 💳 authorizenet
+- 🔧 development
+- ❗ error
+- 📚 error_log
+- 🚨 exception
+- 💰 librepag
+- 📝 log
+- 🕰 old
+- 💸 payment
+- 💳 payment_authorizenet
+- 🛒 payment_paypal_express
+- 🏭 production
+- 🖥 server
+- 🧪 test
+- 🌐 www-error
+
 ### Date Formats
 
 It generates by default the following date formats:
