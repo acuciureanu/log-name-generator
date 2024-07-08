@@ -35,8 +35,7 @@ We support many log types:
 Example of a command which generates `.log` file names using only the default log types:
 
 ```bash
-log-name-generator -date-format "2006-01-02" -days 1 -ext log
-
+$ log-name-generator -date-format "2006-01-02" -days 1 -ext log
 access-2024-07-08.txt
 access_log-2024-07-08.txt
 authorizenet-2024-07-08.txt
@@ -109,6 +108,23 @@ More usage examples:
   This command uses seed names from 'seeds.txt' to generate log filenames for the past 5 days.
   log-name-generator -days 3 -date-format "2006-Jan-02"
   This command generates log filenames for the past 3 days using the format with a three-letter month abbreviation.
+```
+
+### Still not clear how to use the `-seed-file` argument
+
+Let's say that `seeds.txt` is our seed file and it contains a few keywords which we want to include in the file names that we want to generate.
+
+```txt
+keyword1
+keyword2
+```
+
+Now we can run `log-name-generator` with the `-seed-file` arguemnt and it'll generate file names with dates by including those keywords from our seed file.
+
+```bash
+$ log-name-generator -date-format "2006-01-02" -days 1 -ext txt -seed-file .\seed-file.txt
+keyword1-2024-07-08.txt
+keyword2-2024-07-08.txt
 ```
 
 ## License
