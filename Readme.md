@@ -32,6 +32,30 @@ We support many log types:
 - 🧪 test
 - 🌐 www-error
 
+Example of a command which generates `.log` file names using only the default log types:
+
+```bash
+log-name-generator -date-format "2006-01-02" -days 1 -ext log
+
+access-2024-07-08.txt
+access_log-2024-07-08.txt
+authorizenet-2024-07-08.txt
+development-2024-07-08.txt
+error-2024-07-08.txt
+error_log-2024-07-08.txt
+exception-2024-07-08.txt
+librepag-2024-07-08.txt
+log-2024-07-08.txt
+old-2024-07-08.txt
+payment-2024-07-08.txt
+payment_authorizenet-2024-07-08.txt
+payment_paypal_express-2024-07-08.txt
+production-2024-07-08.txt
+server-2024-07-08.txt
+test-2024-07-08.txt
+www-error-2024-07-08.txt
+```
+
 ### Date Formats
 
 It generates by default the following date formats:
